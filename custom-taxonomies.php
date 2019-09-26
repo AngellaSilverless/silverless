@@ -26,7 +26,7 @@ function taxonomy_sector() {
         'menu_name'         => __( 'Sectors'         )
     );     
     
-    register_taxonomy( 'sector', array( 'projects' ), array(
+    register_taxonomy( 'sector', array( 'work' ), array(
         'hierarchical'      => true,
         'labels'            => $labels,
         'show_ui'           => true,
@@ -53,7 +53,7 @@ function taxonomy_type() {
         'menu_name'         => __( 'Types'        )
     );     
     
-    register_taxonomy( 'type', array( 'projects' ), array(
+    register_taxonomy( 'type', array( 'work' ), array(
         'hierarchical'      => true,
         'labels'            => $labels,
         'show_ui'           => true,

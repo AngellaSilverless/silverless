@@ -1,4 +1,5 @@
 class Home extends React.Component {
+	
 	constructor() {
 		super();
 		this.state = {
@@ -33,14 +34,22 @@ class Home extends React.Component {
 		if(this.state && this.state.page && this.state.page.acf) {
 			hero = <Hero hero={this.state.page.acf.hero}/>;
 			sectionLink = <SectionLink section={this.state.page.acf.section_link}/>;
-			featuredWork = <FeaturedWork projects={this.state.page.projects}/>
+			featuredWork = <FeaturedWork works={this.state.page.works}/>
 		}
 		
 		return (
-			<div class="home">
-				{hero}
-				{sectionLink}
-				{featuredWork}
+			<div id="container">
+			
+				<Header />
+				
+				<main class="home">
+					{hero}
+					{sectionLink}
+					{featuredWork}
+				</main>
+			
+				<Footer dark={true} heading={false} />
+		
 			</div>
 		);
 	}
@@ -56,7 +65,7 @@ const SectionLink = (props) => {
 		buttons.push(<a class="button ml2" href={props.section.buttons[1].target}>{props.section.buttons[1].label}</a>);
 	
 	return(
-		<div class="section-link background-dark">
+		<div class="section-link">
 
 			<div class="container cols-4-8">
 				
@@ -76,7 +85,7 @@ const SectionLink = (props) => {
 						
 						<div class="col">
 							
-							<h2 class="heading heading__light heading__lg brand mb1 pb1" dangerouslySetInnerHTML={{__html: props.section.heading}}></h2>
+							<h2 class="heading heading__lg brand mb1 pb1" dangerouslySetInnerHTML={{__html: props.section.heading}}></h2>
 							
 							<div class="copy light-text mb3" dangerouslySetInnerHTML={{__html: props.section.copy}}></div>
 							
@@ -95,39 +104,39 @@ const SectionLink = (props) => {
 };
 
 const FeaturedWork = (props) => {
-	let projects = [];
-	for(let i = 0; i < props.projects.length; i++) {
-		let project = props.projects[i];
+	let works = [];
+	for(let i = 0; i < props.works.length; i++) {
+		let work = props.works[i];
 		
-		projects.push(
-			<div class="project-wrapper container cols-4-8 mb7">
+		works.push(
+			<div class="work-wrapper container cols-4-8 mb7">
 				
 				<div class="col pt3 pb2">
 				
-					<h3 class="heading heading__light heading__md mb0">{project.acf.hero.heading}</h3>
+					<h3 class="heading heading__md mb0">{work.acf.hero.heading}</h3>
 					
-					<div class="sub-heading brand light-text pt1">{project.acf.hero.sub_heading}</div>
+					<div class="sub-heading brand light-text pt1">{work.acf.hero.sub_heading}</div>
 					
 					<div class="type light-text">
 						
-						{project.taxonomies.type.map((type) =>
+						{work.taxonomies.type.map((type) =>
 							
 							<div class="pb1" key={type.term_id}>{type.name}</div>
 							
 						)}
 					</div>
 					
-					<a class="button button__transparent mt3" href={project.permalink}>Find out more</a>
+					<a class="button button__transparent mt3" href={work.permalink}>Find out more</a>
 				
 				</div>
 				
-				<div class="col img" style={{backgroundImage: "url(" + project.acf.hero.background_image + ")"}}></div>
+				<div class="col img" style={{backgroundImage: "url(" + work.acf.hero.background_image + ")"}}></div>
 					
 			</div>
 		);
 	}
 	
-	return(
+	return(	
 		<div class="featured-work background-primary">
 			
 			<div class="container cols-12">
@@ -135,7 +144,20 @@ const FeaturedWork = (props) => {
 				<div class="col">
 				
 					<h2 class="heading-alt pt2 pb2">Featured Work</h2>
-					{projects}
+					
+					{works}
+					
+					<div class="container cols-4-8">
+				
+						<div class="col"></div>
+						
+						<div class="col">
+							
+							<a class="button mb5" href="/work/">See more work</a>
+							
+						</div>
+						
+					</div>
 				
 				</div>
 			

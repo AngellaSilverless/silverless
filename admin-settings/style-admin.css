@@ -42,48 +42,44 @@ ul#adminmenu > li.current > a.current:after {
   font-family: dashicons;
   content: "\f488"; }
 
-.post-type-post #postdivrich {
-  padding: 0 1em 1em 1em;
-  background: #362c3a; }
-
 #editor .edit-post-layout__metaboxes {
   padding-bottom: 15px; }
 
-.post-type-page .acf-postbox, .post-type-projects .acf-postbox {
+.post-type-page .acf-postbox, .post-type-work .acf-postbox {
   background: #362c3a;
   border-color: #362c3a; }
-  .post-type-page .acf-postbox > button.handlediv, .post-type-projects .acf-postbox > button.handlediv {
+  .post-type-page .acf-postbox > button.handlediv, .post-type-work .acf-postbox > button.handlediv {
     display: none; }
-  .post-type-page .acf-postbox > h2.hndle.ui-sortable-handle, .post-type-projects .acf-postbox > h2.hndle.ui-sortable-handle {
+  .post-type-page .acf-postbox > h2.hndle.ui-sortable-handle, .post-type-work .acf-postbox > h2.hndle.ui-sortable-handle {
     display: none; }
 
-.post-type-page #poststuff h2, .post-type-projects #poststuff h2 {
+.post-type-page #poststuff h2, .post-type-work #poststuff h2 {
   font-size: 14px;
   color: #cec7c0;
   border: none; }
 
-.post-type-page .acf-fields > .acf-field, .post-type-projects .acf-fields > .acf-field {
+.post-type-page .acf-fields > .acf-field, .post-type-work .acf-fields > .acf-field {
   border-color: #bcb5ae !important; }
 
-.post-type-page .inside.acf-fields > .acf-field > .acf-label, .post-type-projects .inside.acf-fields > .acf-field > .acf-label {
+.post-type-page .inside.acf-fields > .acf-field > .acf-label, .post-type-work .inside.acf-fields > .acf-field > .acf-label {
   color: white;
   text-transform: uppercase;
   font-size: 24px; }
 
-.post-type-page .acf-flexible-content .layout, .post-type-projects .acf-flexible-content .layout {
+.post-type-page .acf-flexible-content .layout, .post-type-work .acf-flexible-content .layout {
   background: #cec7c0;
   border: none;
   margin-bottom: 50px; }
-  .post-type-page .acf-flexible-content .layout .acf-fc-layout-handle, .post-type-projects .acf-flexible-content .layout .acf-fc-layout-handle {
+  .post-type-page .acf-flexible-content .layout .acf-fc-layout-handle, .post-type-work .acf-flexible-content .layout .acf-fc-layout-handle {
     font-size: 18px;
     text-transform: uppercase;
     font-weight: 900; }
-  .post-type-page .acf-flexible-content .layout .acf-fc-layout-order, .post-type-projects .acf-flexible-content .layout .acf-fc-layout-order {
+  .post-type-page .acf-flexible-content .layout .acf-fc-layout-order, .post-type-work .acf-flexible-content .layout .acf-fc-layout-order {
     background: #cb4a20;
     font-size: 12px;
     color: white; }
 
-.post-type-page .acf-flexible-content .no-value-message, .post-type-projects .acf-flexible-content .no-value-message {
+.post-type-page .acf-flexible-content .no-value-message, .post-type-work .acf-flexible-content .no-value-message {
   color: white; }
 
 .acf-field.full-width .acf-image-uploader .image-wrap img[src$=".svg"] {

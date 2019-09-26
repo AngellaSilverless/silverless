@@ -1,6 +1,7 @@
 class Header extends React.Component {
-	constructor() {
-		super();
+	
+	constructor(props) {
+		super(props);
 		this.state = {
 			isLoaded:  false,
 			menuItems: null,
@@ -45,8 +46,9 @@ class Header extends React.Component {
 	}
 	
 	render() {
+		
 		return (
-			<header>
+			<header {...(this.props && this.props.dark ? {className: "dark"} : {})}>
 				
 				<div class="container cols-4-8">
 					

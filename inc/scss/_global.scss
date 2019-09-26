@@ -18,14 +18,18 @@ body {
     font-family: $body-font;
     font-size: 14px;
     font-weight: normal;
-    background: hsl(0, 0%, 96%);
-    color: hsl(0, 0%, 29%);
+    background: $dark-background;
+    color: white;
     letter-spacing: 0.1em;
     transition: opacity 0.3s ease;
 }
 
 header {
 	background: $brand-primary;
+	
+	&.dark {
+		background: $dark-background;
+	}
 	
 	ul {
 		margin: 0;
@@ -45,6 +49,14 @@ header {
 				display: block;
 			}
 		}
+	}
+}
+
+footer {
+	background: $brand-primary;
+	
+	&.dark {
+		background: $dark-background;
 	}
 }
 
@@ -118,8 +130,7 @@ select:focus {
     }
     
     &__xl {
-        font-size: 4em;
-        line-height: 1em;
+        font-size: 3.5em;
     }
     
     &__lg {      
@@ -131,13 +142,16 @@ select:focus {
     }   
     
     &__sm {
-        font-size: 1.2em;
-        letter-spacing: 2px;
+        font-size: 1.6em;
     }
     
     &__xs {
         font-size: 0.75em;
-    }   
+    }
+    
+    &__lower {
+        text-transform: none;
+    }
 
 }
 
@@ -176,6 +190,10 @@ select:focus {
 		background: $brand-secondary;
 		content: "";
 		bottom: 0;
+	}
+	
+	&__top::before {
+		top: 0;
 	}
 }
 

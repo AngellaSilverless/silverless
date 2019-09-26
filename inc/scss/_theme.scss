@@ -2,11 +2,6 @@
 
 /*===========GLOBAL==========*/
 
-.background-dark {
-	background: darken($brand-primary, 10%);
-	color: white;
-}
-
 .background-primary {
 	background: $brand-primary;
 	color: white;
@@ -20,7 +15,7 @@
 
 /*============BODY===========*/
 
-.project-wrapper {
+.work-wrapper {
 	
 	.sub-heading, .type {
 		font-size: 1.2em;
@@ -57,6 +52,27 @@
 	color: $brand-light-grey;
 	letter-spacing: 2px;
 	font-family: $body-font;
+}
+
+.text {
+	font-size: 1.2em;
+	line-height: 1.5;
+}
+
+.work {
+	
+	.img {
+		height: 18em;
+	}
+	
+	.brand {
+		padding-top: 1.5em;
+		margin-top: 1.5em;
+	}
+	
+	h2 {
+		margin-bottom: 0.2em;
+	}
 }
 
 /*===========FOOTER==========*/

@@ -1,30 +1,32 @@
 <?php
 /*
-// ========= Custom Post Types - Projects ============
+// ========= Custom Post Types - Works ============
 */
-add_action( 'init', 'custom_post_type_projects', 0 );
 
-// ====== Projects
-function custom_post_type_projects() {
+add_action( 'init', 'custom_post_type_work', 0 );
+
+// ====== Work
+
+function custom_post_type_work() {
     $labels = array(
-        'name'                => _x( 'Projects', 'Post Type General Name',  'silverless' ),
-        'singular_name'       => _x( 'Project',  'Post Type Singular Name', 'silverless' ),
-        'menu_name'           => __( 'Projects',           'silverless' ),
-        'parent_item_colon'   => __( 'Parent Project',     'silverless' ),
-        'all_items'           => __( 'All Projects',       'silverless' ),
-        'view_item'           => __( 'View Project',       'silverless' ),
-        'add_new_item'        => __( 'Add New Project',    'silverless' ),
-        'add_new'             => __( 'Add Project',        'silverless' ),
-        'edit_item'           => __( 'Edit Project',       'silverless' ),
-        'update_item'         => __( 'Update Project',     'silverless' ),
-        'search_items'        => __( 'Search Project',     'silverless' ),
+        'name'                => _x( 'Work', 'Post Type General Name',  'silverless' ),
+        'singular_name'       => _x( 'Work',  'Post Type Singular Name', 'silverless' ),
+        'menu_name'           => __( 'Work',               'silverless' ),
+        'parent_item_colon'   => __( 'Parent Work',        'silverless' ),
+        'all_items'           => __( 'All Works',          'silverless' ),
+        'view_item'           => __( 'View Work',          'silverless' ),
+        'add_new_item'        => __( 'Add New Work',       'silverless' ),
+        'add_new'             => __( 'Add Work',           'silverless' ),
+        'edit_item'           => __( 'Edit Work',          'silverless' ),
+        'update_item'         => __( 'Update Work',        'silverless' ),
+        'search_items'        => __( 'Search Work',        'silverless' ),
         'not_found'           => __( 'Not Found',          'silverless' ),
         'not_found_in_trash'  => __( 'Not found in Trash', 'silverless' )
     );
     
     $args = array(
-        'label'               => __( 'projects', 'silverless' ),
-        'description'         => __( 'Projects', 'silverless' ),
+        'label'               => __( 'work', 'silverless' ),
+        'description'         => __( 'Work', 'silverless' ),
         'labels'              => $labels,
         'supports'            => array( 'title', 'taxonomies', 'thumbnail' ),
         'menu_icon'           => 'dashicons-awards',
@@ -41,5 +43,5 @@ function custom_post_type_projects() {
         'publicly_queryable'  => true
     );
     
-    register_post_type( 'projects', $args );
+    register_post_type( 'work', $args );
 }

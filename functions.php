@@ -29,12 +29,12 @@ add_action('wp_dashboard_setup', 'sl_dashboard_widget');
 /* Register routes */
 add_action('rest_api_init', 'sl_register_routes');
 
-/* Rewrite URL */
-add_action('init', 'sl_rewrite_url');
-
 /* Custom Post Types and Taxonomies */
 require_once ('custom-post-types.php');
 require_once ('custom-taxonomies.php');
+
+/* Custom Routes */
+require_once ('custom-routes.php');
 
 /****************************************************************/
 /*                           Functions                           /
@@ -142,137 +142,4 @@ function sl_manage_admin_bar(){
 
 function sl_remove_menus(){
 	remove_menu_page( 'edit-comments.php' ); //Comments
-}
-
-/****************************************************************/
-/*                             ROUTES                            /
-/****************************************************************/
-
-
-function sl_rewrite_url() {
-	add_rewrite_rule('projects/([^/]+)/?$','index.php?post_type=projects&post_id=$matches[1]', 'top');
-}
-
-function sl_register_routes() {
-	
-	register_rest_route( 'routes', '/posts/', array(
-        'methods'  => 'GET',
-        'callback' => 'sl_return_posts'
-    ));
-    
-    register_rest_route( 'routes', '/current-page/', array(
-        'methods'  => 'POST',
-        'callback' => 'sl_return_page'
-    ));
-    
-    register_rest_route( 'routes', '/home/', array(
-        'methods'  => 'GET',
-        'callback' => 'sl_return_home_page'
-    ));
-    
-    register_rest_route( 'routes', '/main-menu/', array(
-        'methods'  => 'GET',
-        'callback' => 'sl_menu_items'
-    ));
-    
-    register_rest_route( 'routes', '/footer-info/', array(
-        'methods'  => 'GET',
-        'callback' => 'sl_footer_info'
-    ));
-    
-    register_rest_route( 'routes', '/projects/', array(
-        'methods'  => 'GET',
-        'callback' => 'sl_return_projects'
-    ));
-    
-    register_rest_route( 'routes', '/projects/(?P<post_id>\d+)', array(
-        'methods'  => 'GET',
-        'callback' => 'sl_return_single_project',
-		'args' => [
-			'id'
-		]
-    ));
-}
-
-function sl_menu_items() {
-	$menuLocation = get_nav_menu_locations();
-	$menuID       = $menuLocation["main-menu"];
-	$menuItems    = wp_get_nav_menu_items($menuID);
-	$menu = array();
-	
-	foreach($menuItems as $item) {
-		array_push($menu, array(
-			"title" => $item->title,
-			"url"   => $item->url
-		));
-	}
-	return $menu;
-}
-
-function sl_return_posts() {
-    $posts = get_posts(array(
-        'post_type'      => 'post',
-        'posts_per_page' => -1, 
-        'numberposts'    => -1
-    ));
-	
-	foreach ($posts as $key => $post) {
-		$posts[$key]->acf = get_fields($post->ID);
-		$posts[$key]->permalink = get_permalink($post->ID);
-	}
-    return $posts;
-}
-
-function sl_return_page($request_data) {
-	$data = $request_data->get_body();
-	$page = json_decode($data);
-	$response = "";
-	
-	if($page == "home") {
-		$response = get_option('page_on_front');
-	}
-	
-    return [$response];
-}
-
-function sl_return_home_page() {
-	$id = get_option("page_on_front");
-	$page = get_post($id);
-	
-	$page->acf = get_fields($id);
-	$page->permalink = get_permalink($id);
-	$page->projects = sl_return_projects(3);
-	return $page;
-}
-
-function sl_footer_info() {
-	$options = get_fields('options');
-	return $options;
-}
-
-function sl_return_projects($count = -1) {
-    $posts = get_posts(array(
-        'post_type'      => 'projects',
-        'posts_per_page' => $count, 
-        'numberposts'    => $count
-    ));
-	
-	foreach ($posts as $key => $post) {
-		$posts[$key]->acf = get_fields($post->ID);
-		$posts[$key]->permalink = get_permalink($post->ID);
-		$posts[$key]->taxonomies = array(
-			'sector' => get_the_terms($post->ID, 'sector'),
-			'type'   => get_the_terms($post->ID, 'type')
-		);
-	}
-    return $posts;
-}
-
-function sl_return_single_project($request) {
-	$id = urldecode($request->get_param('post_id'));
-	$project = get_post($id);
-	
-	$project->acf = get_fields($project->ID);
-	$project->permalink = get_permalink($project->ID);
-	return $project;
 }

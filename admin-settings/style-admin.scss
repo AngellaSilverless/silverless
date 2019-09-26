@@ -56,19 +56,11 @@ ul#adminmenu>li.current>a.current:after {
 	}
 }
 
-.post-type-post {
-	
-	#postdivrich {
-		padding: 0 1em 1em 1em;
-		background: hsl(283, 14%, 20%);
-	}
-}
-
 #editor .edit-post-layout__metaboxes {
 	padding-bottom: 15px;
 }
 
-.post-type-page, .post-type-projects {
+.post-type-page, .post-type-work {
 	
 	.acf-postbox {
 		background: hsl(283, 14%, 20%);

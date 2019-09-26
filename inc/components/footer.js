@@ -28,39 +28,64 @@ class Footer extends React.Component {
 	}
 	
 	footerInfo() {
-		if(this.state && this.state.footer) {
-			let footer = this.state.footer;
+		if(!this.state || !this.state.footer)
+			return;
 			
-			let socials = [];
-			let socialItems = footer.social_links;
-			
-			for(let i = 0; i < socialItems.length; i++) {
-				socials.push(
-					<a href={socialItems[i].link}><i class={"fab fa-" + socialItems[i].social_network}></i></a>
-				);
-			}
-			
-			return (
-				<div class="info">
-					<div class="phone">{footer.phone}</div>
-					<div class="email brand">{footer.email}</div>
-					<div class="socials">{socials}</div>
-					
-					<a class="button mb5" target="_blank" href={footer.button_target}>{footer.button_label}</a>
-					
-					<div class="colophon">
-						<span>{footer.footer_info}</span>
-						<a href="/privacy-policy">Privacy policy</a>
-						<a href="/terms-conditions">Terms & Conditions</a>
-					</div>
-				</div>
+		let footer = this.state.footer;
+		
+		let socials = [];
+		let socialItems = footer.social_links;
+		
+		for(let i = 0; i < socialItems.length; i++) {
+			socials.push(
+				<a href={socialItems[i].link}><i class={"fab fa-" + socialItems[i].social_network}></i></a>
 			);
 		}
+		
+		return (
+			<div class="info">
+				<div class="phone">{footer.phone}</div>
+				<div class="email brand">{footer.email}</div>
+				<div class="socials">{socials}</div>
+				
+				<a class="button mb5" target="_blank" href={footer.button_target}>{footer.button_label}</a>
+				
+				<div class="colophon">
+					<span>{footer.footer_info}</span>
+					<a href="/privacy-policy">Privacy policy</a>
+					<a href="/terms-conditions">Terms & Conditions</a>
+				</div>
+			</div>
+		);
+	}
+	
+	footerHeading() {
+		if(!this.state || !this.state.footer || !this.state.footer.footer_heading)
+			return;
+			
+		if(!this.props || !this.props.heading)
+			return;
+		
+		return(
+			<div class="container cols-4-8">
+				
+				<div class="col"></div>
+				
+				<div class="col pt2 pb4">
+					
+					<div class="heading heading__lg heading__lower">{this.state.footer.footer_heading}</div>
+					
+				</div>
+				
+			</div>
+		);
 	}
 	
 	render() {
 		return (
-			<footer class="background-dark pt5 pb2">
+			<footer class={"pt5 pb2" + (this.props && this.props.dark ? " dark" : "")}>
+				
+				{this.footerHeading()}
 				
 				<div class="container cols-4-8">
 					

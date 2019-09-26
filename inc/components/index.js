@@ -11,9 +11,8 @@
 /***************************************************/
 
 //@prepros-prepend ../../page-templates/home.js
-//@prepros-prepend ../../page-templates/page.js
-//@prepros-prepend ../../page-templates/posts.js
-//@prepros-prepend ../../page-templates/post.js
+//@prepros-prepend ../../page-templates/work.js
+//@prepros-prepend ../../page-templates/single-work.js
 //@prepros-prepend ../../page-templates/not-found.js
 
 /***************************************************/
@@ -32,19 +31,12 @@ class App extends React.Component {
 	
 	render() {
 		return (
-			<div id="container">
-				<Header />
-				<main>
-					<Switch>
-						<Route exact path={SilverlessSettings.path} component={Home} />
-						<Route exact path={SilverlessSettings.path + 'posts/'} component={Posts} />
-						<Route exact path={SilverlessSettings.path + 'posts/:slug'} component={Post} />
-						<Route exact path={SilverlessSettings.path + 'sample-page/'} component={Page} />
-						<Route path="*" component={NotFound} />
-					</Switch>
-				</main>
-				<Footer />
-			</div>
+			<Switch>
+				<Route exact path={SilverlessSettings.path} component={Home} />
+				<Route exact path={SilverlessSettings.path + 'work/'} component={Work} />
+				<Route exact path={SilverlessSettings.path + 'work/:slug'} component={SingleWork} />
+				<Route path="*" component={NotFound} />
+			</Switch>
 		);
 	}
 }
