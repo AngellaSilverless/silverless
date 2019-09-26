@@ -1,0 +1,27 @@
+/*! == VARIABLES == */
+
+$brand-primary: hsl(284, 15%, 20%);
+$brand-secondary: hsl(3, 99%, 63%);
+$brand-tertiary: hsl(0, 0%, 72%);
+$brand-light-grey: hsl(0, 0%, 73%);
+$brand-mid-grey: hsl(0, 0%, 46%);
+$brand-dark-grey: hsl(0, 0%, 15%);
+
+$brand-font: 'lato', sans-serif;
+$body-font: 'lato', sans-serif;
+$supporting-font: 'linotype-sabon', sans-serif;
+
+$fastEffect: all .5s ease;
+$slowEffect: all 1s ease;
+
+$container-width: 1400px;
+$col-count: 12;
+$grid-gap: 2em;
+
+$breakpoints: (
+	xl: 1200px,
+	lg: 992px,
+	md: 768px,
+	sm: 576px,
+	xs: 350px
+);

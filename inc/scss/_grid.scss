@@ -1,0 +1,150 @@
+/*!=====MASTER GRID RULES=====*/
+
+.container {
+    display:grid;
+    grid-template-columns: repeat($col-count, 1fr);
+    grid-gap: $grid-gap;
+    max-width: $container-width;
+    margin-right: auto;
+    margin-left: auto;
+
+    &.fullwidth {
+        max-width: none;
+    }
+
+    &.no-gutter {
+        grid-gap:0;
+    }
+    
+    &.no-gutter-r {
+        grid-row-gap:0;
+    }
+
+    &.no-gutter-c {
+        grid-column-gap:0;
+    }
+    
+    &.gutter-sm {
+	    grid-gap: 1em;
+    }
+
+    &.align-horiz-l > .col {
+        justify-self: flex-start;
+    }
+
+    &.align-horiz-c > .col {
+        justify-self: center;
+    }
+
+    &.align-horiz-r > .col {
+        justify-self: flex-end;
+    }
+
+    &.align-vert-t > .col {
+        align-self: flex-start;
+    }
+
+    &.align-vert-c > .col {
+        align-self: center;
+    }
+
+    &.align-vert-b > .col {
+        align-self: flex-end;
+    }
+
+    > .col {
+        grid-column: span 12;
+    }
+    
+    &.cols-2 > .col {
+        grid-column: span 2;
+    }
+    
+    &.cols-3  > .col {
+        grid-column: span 3;
+    }    
+
+    &.cols-4  > .col {
+        grid-column: span 4;
+    }
+
+    &.cols-6 > .col {
+        grid-column: span 6;
+    }
+    
+    &.cols-12 > .col {
+        grid-column: span 12;
+    }
+    
+}
+
+.container {
+
+    > .col {
+        width:100%;
+    }
+
+    > .col {
+        &.align-horiz-l {
+            justify-self: flex-start;    
+        }
+        &.align-horiz-c {
+            justify-self: center;    
+        }   
+        &.align-horiz-r {
+            justify-self: flex-end;    
+        }     
+        &.align-vert-t {
+            align-self: flex-start;    
+        }
+        &.align-vert-c {
+            align-self: center;    
+        }   
+        &.align-vert-b {
+            align-self: flex-end;
+        }            
+    }
+}
+
+/*=====PROJECT GRID RULES=====*/
+
+/* New grid layouts follow this syntax:
+    
+&.cols-4-8 {
+    .col:nth-of-type(2n - 1) {
+        grid-column: span 4;      
+    }
+    .col:nth-of-type(2n) {
+        grid-column: span 8;     
+    }    
+}
+*/
+
+.container {
+	
+    &.cols-4-8 {
+		> .col:nth-of-type(2n - 1) {
+			grid-column: span 4;      
+		}
+		> .col:nth-of-type(2n) {
+			grid-column: span 8;     
+		}
+    }
+    
+}
+
+
+/*===========MEDIA QUERIES==========*/
+
+@each $name, $size in $breakpoints {
+	
+	@media (max-width: #{$size}) {
+		
+		@for $i from 1 through $col-count {
+			
+			.container.cols-#{$name}-#{$i} > .col {
+				grid-column: span $i;
+			}
+		}
+	}
+}

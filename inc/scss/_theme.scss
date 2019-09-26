@@ -1,0 +1,118 @@
+/*! == THEME STYLES == */
+
+/*===========GLOBAL==========*/
+
+.background-dark {
+	background: darken($brand-primary, 10%);
+	color: white;
+}
+
+.background-primary {
+	background: $brand-primary;
+	color: white;
+}
+
+.light-text {
+	color: $brand-light-grey;
+}
+
+/*===========HEADER==========*/
+
+/*============BODY===========*/
+
+.project-wrapper {
+	
+	.sub-heading, .type {
+		font-size: 1.2em;
+	}
+	
+	.sub-heading {
+		padding-bottom: 1.5em;
+		margin-bottom: 1.5em;
+		line-height: 1.5;
+	}
+	
+	.img {
+		min-height: 32em;
+	}
+	
+	.type div {
+		position: relative;
+		
+		&:before {
+			content: "+";
+			position: absolute;
+			left: 0;
+			transform: translateX(-100%);
+			padding-right: 0.5em;
+			color: $brand-secondary;
+		}
+	}
+}
+
+.heading-alt {
+	font-size: 1.2em;
+	font-weight: lighter;
+	text-transform: uppercase;
+	color: $brand-light-grey;
+	letter-spacing: 2px;
+	font-family: $body-font;
+}
+
+/*===========FOOTER==========*/
+
+footer {
+	
+	.info {
+		color: $brand-light-grey;
+		
+		.phone, .email, .socials {
+			font-size: 1.2em;
+		}
+		
+		.phone {
+			margin-bottom: 1.5em;
+		}
+		
+		.email {
+			padding-bottom: 1.5em;
+			margin-bottom: 1.5em;
+		}
+		
+		.socials {
+			margin-bottom: 2em;
+			
+			a {
+				color: white;
+				margin-right: 1em;
+				
+				&:hover {
+					color: $brand-secondary;
+				}
+			}
+		}
+	}
+	
+	.colophon {
+		font-size: 0.9em;
+		letter-spacing: normal;
+		
+		a {
+			color: $brand-light-grey;
+			margin-left: 2em;
+			position: relative;
+			
+			&:hover {
+				color: $brand-secondary;
+			}
+			
+			&:before {
+				content: "|";
+				position: absolute;
+				color: $brand-light-grey;
+				left: -1em;
+				transform: translateX(-50%);
+			}
+		}
+	}
+}

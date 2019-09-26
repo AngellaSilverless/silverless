@@ -1,0 +1,39 @@
+/*! == COMPONENTS == */
+
+.button {
+    position: relative;
+    display: inline-block;
+    text-rendering: geometricPrecision;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding: 1em;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: white;
+    background: $brand-secondary;
+    transition: background 0.5s ease, color 0.5s ease, border 0.5s ease;
+    width: 12em;
+    border: 1px solid $brand-secondary;
+
+    &:hover {
+        background: white;
+        border-color: white;
+        color: $brand-secondary;
+    }
+    
+    span {
+        display: block;
+        font-weight: 200;
+        text-transform: none;
+        font-style: italic;
+        font-size: 1.2em;
+    }
+	
+	&__transparent {
+		background: transparent;
+		color: $brand-secondary;
+		border: 1px solid $brand-secondary;
+	}
+}
