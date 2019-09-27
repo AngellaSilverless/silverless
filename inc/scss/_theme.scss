@@ -11,6 +11,19 @@
 	color: $brand-light-grey;
 }
 
+.brand-plus {
+	position: relative;
+	
+	&:before {
+		content: "+";
+		position: absolute;
+		left: 0;
+		transform: translateX(-100%);
+		padding-right: 0.5em;
+		color: $brand-secondary;
+	}
+}
+
 /*===========HEADER==========*/
 
 /*============BODY===========*/
@@ -29,19 +42,6 @@
 	
 	.img {
 		min-height: 32em;
-	}
-	
-	.type div {
-		position: relative;
-		
-		&:before {
-			content: "+";
-			position: absolute;
-			left: 0;
-			transform: translateX(-100%);
-			padding-right: 0.5em;
-			color: $brand-secondary;
-		}
 	}
 }
 
@@ -72,6 +72,45 @@
 	
 	h2 {
 		margin-bottom: 0.2em;
+	}
+}
+
+.filter {
+	
+	.title {
+		color: $brand-secondary;
+		text-transform: uppercase;
+	}
+	
+	.taxonomy {
+		text-transform: uppercase;
+		padding-top: 1.5em;
+		
+		.item {
+			margin-bottom: 1.5em;
+			cursor: pointer;
+			
+			&.mixitup-control-active {
+				color: lighten($brand-secondary, 10%);
+			}
+		}
+	}
+}
+
+.single-work {
+	
+	.sub-heading {
+		font-size: 1.5em;
+		text-transform: uppercase;
+		color: $brand-light-grey;
+	}
+	
+	.background.img {
+		height: 50em;
+	}
+	
+	.type {
+		font-size: 1.2em;
 	}
 }
 

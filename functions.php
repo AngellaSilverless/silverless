@@ -44,12 +44,9 @@ function sl_enqueue_scripts() {
 	wp_dequeue_style('wp-block-library');
 	wp_enqueue_style('silverless-style', get_stylesheet_uri());
 	
-	wp_enqueue_script('react',        'https://cdnjs.cloudflare.com/ajax/libs/react/16.9.0/umd/react.production.min.js',         array(),        null);
-	wp_enqueue_script('react-dom',    'https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.9.0/umd/react-dom.production.min.js', array('react'), null);
-	wp_enqueue_script('react-router', 'https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.0.1/react-router-dom.min.js',   array('react'), null);
-	
-	
-	wp_enqueue_script('silverless-script', get_stylesheet_directory_uri() . '/script.js' , array('react', 'react-dom', 'react-router'), '1.0', true);
+	wp_enqueue_script('react-script', get_stylesheet_directory_uri() . '/inc/js/react/compiled.js' , array(), '1.0', true);
+	wp_enqueue_script('plugins-script', get_stylesheet_directory_uri() . '/inc/js/plugins/compiled.js' , array(), '1.0', true);
+	wp_enqueue_script('silverless-script', get_stylesheet_directory_uri() . '/script.js' , array('react-script', 'plugins-script'), '1.0', true);
 	
 	$url = trailingslashit(home_url() );
 	$path = trailingslashit(parse_url($url, PHP_URL_PATH));

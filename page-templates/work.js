@@ -28,6 +28,13 @@ class Work extends React.Component {
 			)
 	}
 	
+	componentDidUpdate() {
+		let works = document.getElementById("works");
+		if(works) {
+			var mixer = mixitup(works);
+		}
+	}
+	
 	loadWorks() {
 		if(!this.state || !this.state.page)
 			return;
@@ -43,13 +50,47 @@ class Work extends React.Component {
 				</div>
 				
 				<div class="col sidebar">
-					SIDEBAR
+					
+					<div class="filter mb5">
+						<div class="title brand-plus">Filter by sector</div>
+						
+						<div class="taxonomy sector">
+							{page.taxonomies.sector.map((sector) =>
+								
+								<div data-filter={"." + sector.slug} class="item" key={sector.term_id} dangerouslySetInnerHTML={{__html: sector.name}}></div>
+								
+							)}
+						</div>
+					</div>
+					
+					
+					<div class="filter mb5">
+						<div class="title brand-plus">Filter by type</div>
+						
+						<div class="taxonomy type">
+							{page.taxonomies.type.map((type) =>
+								
+								<div data-filter={"." + type.slug} class="item" key={type.term_id} dangerouslySetInnerHTML={{__html: type.name}}></div>
+								
+							)}
+						</div>
+					</div>
+					
 				</div>
 				
-				<div class="col container cols-6 works pb7">
+				<div class="col container cols-6 works pb7" id="works">
 					{page.works.map((work) =>
 
-						<a href={work.permalink} class="col pb2" key={work.ID}>
+						<a href={work.permalink} key={work.ID} class={ "mix col pb2"
+							
+							+ work.taxonomies.type.map(function(elem){
+								return " " + elem.slug;
+							}).join("")
+							
+							+ work.taxonomies.sector.map(function(elem){
+								return " " + elem.slug;
+							}).join("")
+						}>
 							
 							<div class="img" style={{backgroundImage: "url(" + work.acf.hero.background_image + ")"}}></div>
 							

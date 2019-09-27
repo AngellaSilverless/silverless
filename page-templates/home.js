@@ -121,7 +121,7 @@ const FeaturedWork = (props) => {
 						
 						{work.taxonomies.type.map((type) =>
 							
-							<div class="pb1" key={type.term_id}>{type.name}</div>
+							<div class="brand-plus pb1" key={type.term_id}>{type.name}</div>
 							
 						)}
 					</div>

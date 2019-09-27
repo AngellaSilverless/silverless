@@ -30,11 +30,11 @@ function sl_register_routes() {
         'callback' => 'page_work'
     ));
     
-    register_rest_route( 'routes', '/work/(?P<post_id>\d+)', array(
+    register_rest_route( 'routes', '/work/(?P<slug>[-\w]+)', array(
         'methods'  => 'GET',
         'callback' => 'page_single_work',
 		'args' => [
-			'id'
+			'slug'
 		]
     ));
 }
@@ -86,15 +86,43 @@ function page_work() {
 	$page->acf = get_fields($id);
 	$page->permalink = get_permalink($id);
 	$page->works = get_cpt_work();
+	
+	$types   = array();
+	$sectors = array();
+	
+	foreach(get_terms(array('taxonomy' => 'type', 'hide_empty' => false)) as $type)
+		array_push($types, $type);
+	
+	foreach(get_terms(array('taxonomy' => 'sector', 'hide_empty' => false)) as $sector)
+		array_push($sectors, $sector);
+	
+	$page->taxonomies = array(
+		'type'   => $types,
+		'sector' => $sectors
+	);
 	return $page;
 }
 
 function page_single_work($request) {
-	$id = urldecode($request->get_param('post_id'));
-	$work = get_post($id);
+	$post_slug = urldecode($request->get_param('slug'));
+	
+	$work = get_posts(array(
+		'name'        => $post_slug,
+		'post_type'   => 'work',
+		'post_status' => 'publish'
+	));
+	
+	if(sizeof($work) == 0)
+		return false;
+		
+	$work = $work[0];
 	
 	$work->acf = get_fields($work->ID);
 	$work->permalink = get_permalink($work->ID);
+	$work->taxonomies = array(
+		'sector' => get_the_terms($work->ID, 'sector'),
+		'type'   => get_the_terms($work->ID, 'type')
+	);
 	return $work;
 }
 
